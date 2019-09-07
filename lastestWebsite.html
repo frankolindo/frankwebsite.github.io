@@ -1,0 +1,1349 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>HOME-PAGE</title>
+		 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<style type="text/css">
+			*{
+				padding:0;
+				margin:0;
+				box-sizing:border-box;
+				/*background-color:rgba(0,0,0,0.3);*/
+			}
+			body{
+				background-color:rgba(0,0,0,0.8);
+				overflow-x:hidden;
+			}
+	    	.header{
+				position:absolute;
+				top:0px;
+				left:0;
+				width:100%;
+				height:50px;
+				font-size:50px;
+				filter:drop-shadow(2px 3px 1px #333);
+				color:#fff;
+				background-color:rgba(0,1,2,0.8);
+				z-index:90;
+			}
+			a{
+				text-decoration:none;
+				color:inherit;
+				background-color:transparent;
+			}
+			span{
+				background-color:transparent;
+			}
+			i{
+				background-color:transparent;
+			}
+	/*there should be an indecation here because this is a very critical part of my code!!*/
+
+			#search{
+				position:absolute;
+				top:18px;
+				right:70px;
+				overflow-x:hidden;
+				cursor:pointer;
+				display:none;
+				z-index:99;
+			}
+
+			input[type=search]{
+				font-size:15px;
+				width:150px;
+				height:30px;			
+				border-radius:5px;
+				background-color:transparent;
+				color:#fff;
+				border:3px solid #eac117;
+				-moz-animation: change 1s infinite alternate;
+				-webkit-animation: change 1s infinite alternate;
+				-o-animation: change 1s infinite alternate;
+				animation: change 1s infinite alternate;
+			}
+			#search-i{
+				position: absolute;
+				top:10px;
+				right:30px;
+				width:20px;height:20px;
+				border:2px solid #eac117 ;
+				border-radius:50%;
+				z-index:99;
+			}
+			#search-i:hover{
+				animation:vib 0.1s 2 ease;
+				cursor:pointer;
+			}
+			#search-i::after{
+				content:'';
+				width:0;height:5px;
+				position:absolute;
+				top:100%;left:100%;
+				border:2px solid violet;
+				transform:rotate(135deg);
+				border-radius:5px;
+			}
+			#come{
+				position: absolute;
+				top:10px;left:15px;
+				z-index:98;overflow-x:hidden;
+			}
+
+			#come:hover{
+				cursor:pointer;
+				-moz-animation:shake 0.2s 2 ease none;
+				-webkit-animation:shake 0.2s 2 ease none;
+				-o-animation:shake 0.2s 2 ease none;
+				animation:shake 0.2s 2 ease none;
+			}
+			#ogah{
+				position:absolute;
+				top:10px;left:15px;
+				z-index:99;overflow-x:hidden;
+			}
+			#ogah:hover{
+				cursor:pointer;
+				-moz-animation:shake 0.2s 2 ease none;
+				-webkit-animation:shake 0.2s 2 ease none;
+				-o-animation:shake 0.2s 2 ease none;
+				animation:shake 0.2s 2 ease none;
+			}
+			#top{
+				width:25px;height:4px;
+				background-color:violet;
+				border-radius:15px;
+				margin-top:3px;
+				transform-origin:left;
+			}
+
+			
+			#center{
+				width:25px;height:4px;
+				background-color:#eac117;
+				border-radius:15px;
+				margin-top:3px;
+				transform-origin:left;
+			}
+			#bottom{
+				width:25px;height:4px;
+				background-color:purple;
+				border-radius:15px;
+				margin-top:3px;
+				transform-origin:left;
+			}
+/*grid grid grid grid grid grid grid grid start here!!!*/
+			.wrapper{
+				position:absolute;
+				top:55px;
+				display:flex;
+				flex-direction:column; 
+			}
+
+			.wrapper > div{
+				background-color:rgba(0,0,0,0.5);
+				color:#fff;
+			}
+			.wrapper > div:nth-child(odd){
+				background-color:rgba(0,0,0,0.3);
+			}
+			.box1 > a{
+				padding:1em;
+				font-family:tahoma;
+				color:gray;
+
+				border-bottom:2px solid rgba(0,0,0,0.1);
+			}
+			.box1 > a:hover{
+				cursor:pointer;
+				color:#fff;
+				background-color:gray;
+			}
+			.box1, .box3{
+				flex:1;
+				display:none;
+				flex-direction:column; 
+			}
+			.box3{
+				display:none;
+			}
+			.box1 span{
+				margin-left:1em;
+			}
+
+			.box2 > div:nth-child(odd){
+				background-color:rgba(0,0,0,0);
+			}
+			.box2 > div{
+				background-color:rgba(0,0,0,0);
+				border-bottom:1px solid #111;
+				
+			}
+			.box2{
+				display:flex;
+				justify-content:space-between;
+				flex-wrap:wrap;
+			}
+			.big{
+				flex-basis:100%;
+			}
+			.one{
+				flex-basis:49%; 
+			}
+			.artist{
+				font-size:15px;
+				font-family:century-gothic;
+				background-color:transparent;
+				color:#fff;
+				opacity:0.5;
+			}
+			.artist > span:hover{
+				cursor:pointer;
+			}
+			.artist:hover{
+				cursor:pointer;
+			}
+			.song{
+				background-color:transparent;
+			}
+			.song:hover{
+				cursor:pointer;
+			}
+			.pix img{
+				width:100%;
+				height:11em ;
+			}
+			.pix:hover{
+				opacity:0.8;
+				cursor:pointer;
+			}
+			@-moz-keyframes times{
+				0%{transform:rotate(0deg);}
+				100%{transform:rotate(35deg);}
+			}
+			@-moz-keyframes times1{
+				0%{transform:rotate(360deg);}
+				100%{transform:rotate(325deg);}
+			}
+			@-moz-keyframes rev{
+				0%{transform:rotate(35deg);}
+				100%{transform:rotate(0deg);}
+			}
+			@-moz-keyframes rev1{
+				0%{transform:rotate(325deg);}
+				100%{transform:rotate(360deg);}
+			}
+
+
+			@-webkit-keyframes times{
+				0%{transform:rotate(0deg);}
+				100%{transform:rotate(35deg);}
+			}
+			@-webkit-keyframes times1{
+				0%{transform:rotate(360deg);}
+				100%{transform:rotate(325deg);}
+			}
+			@-webkit-keyframes rev{
+				0%{transform:rotate(35deg);}
+				100%{transform:rotate(0deg);}
+			}
+			@-webkit-keyframes rev1{
+				0%{transform:rotate(325deg);}
+				100%{transform:rotate(360deg);}
+			}
+
+			@-o-keyframes times{
+				0%{transform:rotate(0deg);}
+				100%{transform:rotate(35deg);}
+			}
+			@-o-keyframes times1{
+				0%{transform:rotate(360deg);}
+				100%{transform:rotate(325deg);}
+			}
+			@-o-keyframes rev{
+				0%{transform:rotate(35deg);}
+				100%{transform:rotate(0deg);}
+			}
+			@-o-keyframes rev1{
+				0%{transform:rotate(325deg);}
+				100%{transform:rotate(360deg);}
+			}
+
+
+			@keyframes times{
+				0%{transform:rotate(0deg);}
+				100%{transform:rotate(35deg);}
+			}
+			@keyframes times1{
+				0%{transform:rotate(360deg);}
+				100%{transform:rotate(325deg);}
+			}
+			@keyframes rev{
+				0%{transform:rotate(35deg);}
+				100%{transform:rotate(0deg);}
+			}
+			@keyframes rev1{
+				0%{transform:rotate(325deg);}
+				100%{transform:rotate(360deg);}
+			}
+/*this animation is for my search bar*/
+			
+			@-moz-keyframes change{
+				0%{border:3px solid violet;}
+				50%{border:3px solid purple;}
+				100%{border:3px solid #eac117;}
+			}
+			@-webkit-keyframes change{
+				0%{border:3px solid violet;}
+				50%{border:3px solid purple;}
+				100%{border:3px solid #eac117;}
+			}
+			@-o-keyframes change{
+				0%{border:3px solid violet;}
+				50%{border:3px solid purple;}
+				100%{border:3px solid #eac117;}
+			}
+
+			@keyframes change{
+				0%{border:3px solid violet;}
+				50%{border:3px solid purple;}
+				100%{border:3px solid #eac117;}
+			}
+/*ABEG GIVE ME SOME SPACE HERE!*/
+			@-moz-keyframes vib{
+				0%{width:22px;height:22px;}
+				100%{width:32px;height:32px;}
+			}
+			@-webkit-keyframes vib{
+				0%{width:22px;height:22px;}
+				100%{width:32px;height:32px;}
+			}
+			@-o-keyframes vib{
+				0%{width:22px;height:22px;}
+				100%{width:32px;height:32px;}
+			}
+			@keyframes vib{
+				0%{width:22px;height:22px;}
+				100%{width:32px;height:32px;}
+			}
+/*ABEG GIVE ME SOME SPACE HERE!*/
+/*
+			@-moz-keyframes shake{
+				0%{left:10px;}
+				33%{left:20px;}
+				66%{top:10px;}
+				100%{top:20px;}
+			}
+			@-webkit-keyframes shake{
+				0%{left:10px;}
+				33%{left:20px;}
+				66%{top:10px;}
+				100%{top:20px;}
+			}
+			@-o-keyframes shake{
+				0%{left:10px;}
+				33%{left:20px;}
+				66%{top:10px;}
+				100%{top:20px;}
+			}
+			@keyframes shake{
+				0%{left:10px;}
+				33%{left:20px;}
+				66%{top:10px;}
+				100%{top:20px;}
+			}
+			*/
+			@-moz-keyframes play1{
+				0%{transform:rotate(30deg);}
+				100%{transform:rotate(90deg);left:20px;}
+			}
+			@-webkit-keyframes play1{
+				0%{transform:rotate(30deg);}
+				100%{trasform:rotate(90deg);left:20px;}
+			}
+			@-o-keyframes play1{
+				0%{transform:rotate(30deg);}
+				100%{transform:rotate(90deg);left:20px;}
+			}
+			@keyframes play1{
+				0%{transform:rotate(30deg);}
+				100%{transform:rotate(90deg);left:20px;}
+			}
+
+			@-moz-keyframes play2{
+				0%{transform:rotate(-30deg);top:-9px;}
+				100%{trasform:rotate(-90deg);top:-5px;}
+			}
+			@-webkit-keyframes play2{
+				0%{transform:rotate(-30deg);top:-9px;}
+				100%{trasform:rotate(-90deg);top:-5px;}
+			}
+			@-o-keyframes play2{
+				0%{transform:rotate(-30deg);top:-9px;}
+				100%{trasform:rotate(-90deg);top:-5px;}
+			}
+			@keyframes play2{
+				0%{transform:rotate(-30deg);top:-9px;}
+				100%{transform:rotate(-90deg);top:-5px;}
+			}
+			@keyframes download{
+				0%{margin-top:0px;}
+				100%{margin-top:20px;}
+			}
+			.big img{
+				width:100%;
+				height:14em;
+				position:relative;
+				top:0;
+				left:0;
+				border-radius:10px;
+				border:2px solid rgba(0,1,2,0.8);
+			}
+			.big img:hover{
+				opacity:0.8;
+			}
+			#button{
+				text-align:center;
+				z-index:99;
+				background-color:transparent;
+
+			}
+			#playbtn{
+				position:relative;
+				width:60px;
+				height:60px;
+				border:1px solid violet;
+				background-color:transparent;
+				border-radius:50%;
+				outline:none;
+			}
+			.tooltip{
+				visibility:hidden;
+				width:70px;
+				margin-left:-35px;
+				position:absolute;
+				top:100%;
+				left:50%;
+				background-color:#fff;
+				font-size:15px;
+			    color:#000;
+		 	    text-align: center;
+				padding: 3px 0;
+				border-radius: 2px;
+				z-index:1;
+				opacity: 0;
+		 		transition: opacity 1s;
+			}
+			.tooltip::after{
+				content:'';
+				position:absolute;
+				bottom:100%;
+				right:40%;
+				margin-left:-5px;
+				border-width:5px;
+				border-style:solid;
+				border-color:transparent transparent #fff transparent;
+			}
+			#playbtn:hover{
+				cursor:pointer;
+				background-color:#111;
+
+			}
+			#playbtn:hover .tooltip{
+			    visibility: visible;
+			    opacity:1;
+			}
+			#like{
+				position:relative;
+				width:55px;
+				height:55px;
+				border:1px solid transparent;
+				font-size:20px;
+				color:red;
+				background-color:transparent;
+				border-radius:50%;
+				background-color:transparent;
+				outline:none;
+			}
+			#like:hover .tooltip{
+			    visibility: visible;
+			    opacity:1;
+			}
+			#like:hover{
+				cursor:pointer;
+			}
+			#love{
+				position:relative;
+				width:55px;
+				height:55px;
+				border:1px solid transparent;
+				font-size:20px;
+				color:#eac117;
+				background-color:transparent;
+				border-radius:50%;
+				outline:none;
+			}
+			#love:hover .tooltip{
+			    visibility: visible;
+			    opacity:1;
+			}
+			#love:hover{
+				cursor:pointer;
+			}
+			#options{
+				position:relative;
+				width:55px;
+				height:55px;
+				border:1px solid transparent;
+				background-color:transparent;
+				border-radius:50%;
+				outline:none;
+			}
+			#options:hover .tooltip{
+			    visibility: visible;
+			    opacity:1;
+			}
+			#options:hover{
+				cursor:pointer;
+			}
+			#download{
+				position:relative;
+				width:55px;
+				height:55px;
+				border:1px solid transparent;
+				background-color:transparent;
+				border-radius:50%;
+				outline:none;
+			}
+			#download:hover .tooltip{
+			    visibility: visible;
+			    opacity:1;
+			}
+			#download:hover{
+				cursor:pointer;
+			}
+			.home:hover{
+				opacity:0.5;
+			}
+			
+			#setRange{
+				background-color:transparent;
+				position:relative;
+				text-align:center;
+			}
+			.range{
+				width:60%;
+				height:2px;
+				background-color:#eac117;
+				-webkit-appearance:none;
+				outline:none;
+				border-radius:2px;
+			
+			}
+			.range:hover{
+				cursor:pointer;
+			}
+			.range::-webkit-slider-thumb{
+				-webkit-appearance:none;
+				width:15px;
+				height:15px;
+				border-radius:50%;
+				background-color:violet;
+			}
+			audio{
+				display:none;
+			}
+			#rangeValue{
+				position:absolute;
+				top:4px;
+				left:0;
+				padding:2px;
+				width:40px;
+				box-sizing:border-box;
+				background-color:#fff;
+				color:rgba(0,0,0,0.7);
+				text-align:center;
+				border-radius:2px;
+				font-size:10px;
+			}
+			#rangeValue::before{
+				content:'';
+				position:absolute;
+				top:5px;
+				left:95%;
+				transform: rotate(45deg);
+				width:5px;
+				height:5px;
+				background-color:#fff;
+			}
+			#rangeEndValue{
+				position:absolute;
+				top:4px;
+				right:0;
+				padding:2px;
+				width:40px;
+				box-sizing:border-box;
+				background-color:#fff;
+				color:rgba(0,0,0,0.7);
+				text-align:center;
+				border-radius:2px;
+				font-size:10px;
+			}
+			#rangeEndValue::before{
+				content:'';
+				position:absolute;
+				top:5px;
+				right:95%;
+				transform: rotate(45deg);
+				width:5px;
+				height:5px;
+				background-color:#fff;
+			}
+			#play{
+				position:relative;
+				width:5px;
+				height:30px;
+				background-color:#eac117;
+				border-radius:5px;
+				margin-left:18px;
+				margin-top:5px;
+			}
+
+			#playPause{
+				position:relative;
+				top:-30px;
+				width:30px;
+				height:5px;
+				background-color:#eac117;
+				border-radius:5px;
+				margin-left:18px;
+				transform-origin:left;
+				transform:rotate(30deg);
+			}
+			#btn{
+				position:relative;
+				top:-9px;
+				width:30px;
+				height:5px;
+				background-color:#eac117;
+				border-radius:5px;
+				margin-left:18px;
+				transform-origin:left;
+				transform:rotate(-30deg);
+			}
+			.options{
+				width:5px;
+				height:5px;
+				background-color:#eac117;
+				margin-left:28px;
+				border-radius:50%;
+				box-shadow:0px 10px 0px  purple,0px -10px 0px  violet;
+
+			}
+			.down{
+				position:relative;
+				width:4px;
+				height:25px;
+				background-color:purple;
+				border-radius:5px;
+				margin-left:28px;
+			}
+			.down::before{
+				content:'';
+				position:absolute;
+				left:100%;
+				margin-top:20px;
+				margin-left:-5px;
+				width:15px;
+				height:4px;
+				background-color:purple;
+				border-radius:5px;
+				transfrom-origin:left;
+				transform:rotate(315deg);
+			}
+			.down::after{
+				content:'';
+				position:absolute;
+				margin-top:20px;
+				right:-10%;
+				margin-left:5px;
+				width:15px;
+				height:4px;
+				background-color:purple;
+				border-radius:5px;
+				transfrom-origin:right;
+				transform:rotate(45deg);
+			}
+			.load{
+				position:absolute;
+				/*margin-top:30px;*/
+				height:4px;
+				width:4px;
+				background-color:transparent;
+
+			}
+			.ing{
+				width:25px;
+				height:4px;
+				background-color:purple;
+				margin-left:17px;
+				border-radius:2px;
+			}
+			/*
+abc
+	def
+	ghi
+		kl
+			me 
+				you
+					them
+						us
+							our
+			*/
+			@media(min-width: 600px){
+				.big img{
+					width:80%;
+					height:15em;
+					position:relative;
+					top:5%;
+					left:10%;
+					border-radius:10px;
+					border:2px solid rgba(0,1,2,0.8);
+				}
+				#rangeValue{
+					position:absolute;
+					top:2px;
+					left:8%;
+					padding:2px;
+					width:50px;
+					box-sizing:border-box;
+					background-color:#fff;
+					color:rgba(0,0,0,0.7);
+					text-align:center;
+					border-radius:2px;
+					font-size:15px;
+				}
+				#rangeValue::before{
+					content:'';
+					position:absolute;
+					top:5px;
+					left:90%;
+					transform: rotate(45deg);
+					width:10px;
+					height:10px;
+					background-color:#fff;
+				}
+				#rangeEndValue{
+					position:absolute;
+					top:2px;
+					right:8%;
+					padding:2px;
+					width:50px;
+					box-sizing:border-box;
+					background-color:#fff;
+					color:rgba(0,0,0,0.7);
+					text-align:center;
+					border-radius:2px;
+					font-size:15px;
+				}
+				#rangeEndValue::before{
+					content:'';
+					position:absolute;
+					top:5px;
+					left:-10%;
+					transform: rotate(45deg);
+					width:10px;
+					height:10px;
+					background-color:#fff;
+				}
+			}
+			@media(min-width: 768px){
+				.big img{
+					width:60%;
+					height:15em;
+					position:relative;
+					top:5%;
+					left:20%;
+					border-radius:10px;
+					border:2px solid rgba(0,1,2,0.8);
+				}
+				
+				#search{
+					display:none;
+				}
+				.one{
+					flex-basis:32%; 
+				}
+				.box1{
+					grid-column:1/2;
+					grid-row:1/4;
+				}
+				.box1,.box3{
+					display:none;
+				}
+				.pix img{
+					height:8em;
+				}
+			}
+			@media(min-width: 992px){
+				.header{
+					position:fixed;
+					width:100%;
+					font-size:50px;
+					margin-top:1px;
+					filter:drop-shadow(2px 3px 1px #333);
+					color:#fff;
+					background-color:rgba(0,1,2,0.8);
+					z-index:90;
+				}
+
+				#search{
+					position:fixed;
+					top:12px;
+					right:70px;
+					overflow-x:hidden;
+					cursor:pointer;
+					display:block;
+					z-index:99;
+				}
+
+				input[type=search]{
+					font-size:15px;
+					width:150px;
+					height:30px;
+					border-radius:5px;
+					background-color:rgba(0,1,1.1,0.1);
+					color:#fff;
+					border:3px solid #eac117;
+					-moz-animation: change 1s infinite alternate;
+					-webkit-animation: change 1s infinite alternate;
+					-o-animation: change 1s infinite alternate;
+					animation: change 1s infinite alternate;
+				}
+				#search-i{
+					position:fixed;
+					top:12px;
+					right:30px;
+					width:25px;height:25px;
+					border:4px solid #eac117 ;
+					border-radius:50%;
+					z-index:99;
+				}
+				#search-i:hover{
+					animation:vib 0.3s 2 ease;
+					cursor:pointer;
+				}
+				#search-i::after{
+					content:'';
+					width:0;height:8px;
+					position:absolute;
+					top:17px;left:20px;
+					border:2px solid violet;
+					transform:rotate(135deg);
+					border-radius:5px;
+				}
+				#come{
+					position:fixed;
+					top:15px;left:15px;
+					z-index:98;overflow-x:hidden;
+				}
+
+				#come:hover{
+					cursor:pointer;
+					-moz-animation:shake 0.2s 2 ease none;
+					-webkit-animation:shake 0.2s 2 ease none;
+					-o-animation:shake 0.2s 2 ease none;
+					animation:shake 0.2s 2 ease none;
+				}
+				#ogah{
+					position:fixed;
+				}
+				
+	/*grid grid grid grid grid grid grid grid start here!!!*/
+				.wrapper{
+					position:absolute;
+					top:55px;
+					flex-direction:row;
+				}
+
+				.wrapper > div{
+					background-color:rgba(0,0,0,0.5);
+					color:#fff;
+				}
+				.wrapper > div:nth-child(odd){
+					background-color:rgba(0,0,0,0.3);
+				}
+				
+				.box1, .box3{
+					flex:1;
+					display:flex;
+					flex-direction:column; 
+				}
+				.box1 span{
+					margin-left:1em;
+				}
+
+				.box2 > div:nth-child(odd){
+					background-color:rgba(0,0,0,0);
+				}
+				.box2 > div{
+					background-color:rgba(0,0,0,0);
+					border-bottom:1px solid #111;
+					
+				}
+				.box2{
+					flex:4;
+				}
+				/*.one{
+					flex-basis:24%; 
+				}*/
+				.pix img{
+					width:100%;
+					height:8em;
+				}
+				.pix:hover{
+					opacity:0.8;
+					cursor:pointer;
+				}
+				.big img{
+					width:50% !important;
+					height:15em !important;
+					position:relative;
+					top:5% !important;
+					left:25% !important;
+					border-radius:10px;
+					border:2px solid rgba(0,1,2,0.8);
+				}
+				.big img:hover{
+					opacity:0.8;
+				}
+				#button{
+					text-align:center;
+					z-index:99;
+					background-color:transparent;
+
+				}
+				#playbtn{
+					position:relative;
+					width:70px;
+					height:70px;
+					border:1px solid violet;
+					background-color:transparent;
+					border-radius:50%;
+					outline:none;
+				}
+				
+				#play{
+					position:relative;
+					width:5px;
+					height:30px;
+					background-color:#eac117;
+					border-radius:5px;
+					margin-left:23px;
+					margin-top:5px;
+				}
+
+				#playPause{
+					position:relative;
+					top:-30px;
+					width:30px;
+					height:5px;
+					background-color:#eac117;
+					border-radius:5px;
+					
+					margin-left:23px;
+					transform-origin:left;
+					transform:rotate(30deg);
+				}
+				#btn{
+					position:relative;
+					top:-9px;
+					width:30px;
+					height:5px;
+					background-color:#eac117;
+					border-radius:5px;
+					margin-left:23px;
+					transform-origin:left;
+					transform:rotate(-30deg);
+				}
+				.options{
+					width:5px;
+					height:5px;
+					background-color:#eac117;
+					margin-left:28px;
+					border-radius:50%;
+					box-shadow:0px 10px 0px  purple,0px -10px 0px  violet;
+
+				}
+				.range::-webkit-slider-thumb{
+					-webkit-appearance:none;
+					width:20px;
+					height:20px;
+				}
+			}
+			@media(min-width: 1200px){
+				.one{
+					flex-basis:24%;
+				}
+				#search{
+					left:25% !important;
+					transfrom:translate(-50%,-50%);
+				}
+				#search-i{
+					left:70%;
+				}
+				input[type=search]{
+					font-size:15px;
+					width:63%;
+					height:30px;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class='header'></div>
+		<!-- <div id='tittle'>MUSIK</div> -->
+		<div id='ogah' style='background-color:transparent;width:35px;height:30px;' onclick='openNav()'></div>
+		<div id='come' onclick='closeNav()' style='background-color:transparent;'>
+			<div id='top'></div>
+			<div id='center'></div>
+			<div id='bottom'></div>
+		</div>
+
+		<!-- all the whole search wahala strats here!! -->
+		<div id='search-i'></div>
+		<div id='search'>
+			<input type='search' placeholder='Enter key word' >
+		</div>
+		<div id='back' onclick='closeSearch()'>
+			<div id='waka'></div>
+		</div>
+		<div id='goback' onclick='closeSearch()'></div>
+		<!-- and it ends here -->
+		<canvas id='follow'></canvas>
+
+		<!-- grid grid grid grid grid grid grid grid grid grid -->
+		<div class='wrapper' id='wrapper'>
+			 <div class='box1' id='box1'>
+				<a href='#' class='home'>
+					<i class='fa fa-home'></i>
+					<span class='menu-list'>Home</span>
+				</a>
+				<a href='#' class='home'>
+					<i class='fa fa-home'></i>
+					<span class='menu-list'>About</span>
+				</a>
+				<a href='#' class='home'>
+					<i class='fa fa-home'></i>
+					<span class='menu-list'>Contact</span>
+				</a>
+				<a href='#' class='home'>
+					<i class='fa fa-home'></i>
+					<span class='menu-list'>Home</span>
+				</a> 
+			</div>
+			<div class='box2'>
+				<div class='big'>
+					<img src='Kizz-Daniel-Fvck-You-Prod-Young-John-mp3-image.webp' id='bigimg'>
+					<audio controls='controls' loop='true' id='songs'>
+						<source src='Kizz-Daniel-Fvck-You-Prod.-Young-John.mp3' type='audio/mp3'>
+					</audio>
+					<div id='setRange'>
+						<span id='rangeValue'>0</span>
+						<span id='rangeEndValue'>0</span>
+						<input type='range' class='range' id='range' value='0' min='0' max='100'>
+					</div>
+					<div id='button'>
+						<button id='download' onclick='download()'>
+							<div class='down'>
+								<div class='load' id='loading'></div>
+							</div>
+							<div class='ing'></div>
+							<span class='tooltip'>Download</span>
+						</button>
+						<button id='like'>
+							<i class="fa fa-heart"></i><br> 
+							<span style='color:#fff;opacity:0.5;font-size:18px;'>100k</span>
+							<span class='tooltip'>Love</span>
+						</button>
+						<button id='playbtn' onclick='bustBrain()'>
+							<div id='play'></div>
+							<div id='playPause'></div>
+							<div id='btn'></div>
+							<span class='tooltip' id='tooltip'>Play</span>
+						</button>
+						<button id='love'>
+							<i class='fa fa-comments'></i><br> 
+							<span style='color:#fff;opacity:0.5;font-size:18px;'>18k</span>
+							<span class='tooltip'>Comment</span>
+						</button>
+						<button id='options'>
+							<div class='options'></div>
+							<span class='tooltip'><a href="#">Options</a></span>
+						</button>
+					</div>	
+				</div>
+				<div class='one' onclick='playErigga()'>
+					<div class='pix'>
+						<img src='wizkid.jpg' alt='no img'>
+					</div>
+					<!-- <div>pro</div> -->
+					<div class='song'>SITUATION ROOM</div>
+					<div class='artist'>Erigga</div>
+					<div class='artist' style='margin-top:0px;'>3.4k plays
+						<span> "6hours ago"</span>
+					</div>
+				</div>
+				<div class='one' onclick='nara()'>
+					<div class='pix'>
+						<img src='travies.jpg' alt='no img'>
+					</div>
+					<div class='song'>NARA</div>
+					<div class='artist'>Tim gofery</div>
+					<div class='artist' style='margin-top:0px;'>3.4k plays
+						<span> "6hours ago"</span>
+					</div>
+				</div>
+				<div class='one' onclick='playMadu()'>
+					<div class='pix'>
+						<img src='wizkid.jpg' alt='no img'>
+					</div>
+					<div class='song'>JAH BLESS</div>
+					<div class='artist'>Star-boi</div>
+					<div class='artist' style='margin-top:0px;'>3.4k plays
+						<span> "6hours ago"</span>
+					</div>
+				</div>
+				<div class='one' onclick='playForYou()'>
+					<div class='pix'>
+						<img src='Kizz-Daniel-For-You.webp' alt='no img'>
+						
+					</div>
+					<div class='song'>FOR YOU</div>
+					<div class='artist'>Kiss-daniel ft Wizkid</div>
+					<div class='artist' style='margin-top:0px;'>3.4k plays
+						<span> "6hours ago"</span>
+					</div>
+				</div>
+				<div class='one' onclick='owotime()'>
+					<div class='pix'>
+						<img src='louis.jpg' alt='no img'>
+					</div>
+					<!-- <div>pro</div> -->
+					<div class='song'>OWONTIME</div>
+					<div class='artist'>Optimist</div>
+					<div class='artist' style='margin-top:0px;'>3.4k plays
+						<span> "6hours ago"</span>
+					</div>
+				</div>
+				<div class='one' onclick='owotime()'>
+					<div class='pix'>
+						<img src='louis.jpg' alt='no img'>
+					</div>
+					<!-- <div>pro</div> -->
+					<div class='song'>OWONTIME</div>
+					<div class='artist'>Optimist</div>
+					<div class='artist' style='margin-top:0px;'>3.4k plays
+						<span> "6hours ago"</span>
+					</div>
+				</div>
+			</div>
+				<!--independent right space for user details  -->
+			<div class='box3'>Box 3</div>
+		</div>
+
+		<script>
+		//remenber to change all window,innerWidth/height to 
+		//screen.availWidth/height
+		console.log(window.innerWidth);
+			var canvas = document.getElementById('follow');
+			var c = canvas.getContext('2d');
+			//console.log(c);
+			canvas.width = window.innerWidth;
+			canvas.height = window.innerHeight * 2;
+			
+			window.addEventListener('resize',function(){
+				canvas.width = window.innerWidth;
+				canvas.height = window.innerHeight * 2;
+				init();
+
+			})
+			//ooo my almighty classass
+			var mouse = {
+				x:undefined,
+				y:undefined
+			}
+			
+			window.addEventListener('mousemove',function(event){
+				mouse.x = event.x;
+				mouse.y = event.y;
+				init();
+				/*playPauseUpdate();*/
+			})
+			
+			// here the programming begeings
+			
+			function Circle(x, y, r, dr){
+				this.x = x;
+				this.y = y;
+				this.r = r;
+				this.dr = dr;
+				
+				this.draw = function(){
+					c.beginPath();
+					c.arc(this.x,this.y,this.r,0,Math.PI*2,false);
+					c.fillStyle = 'rgba(0,0,0,0.7)';
+					c.fill();
+				}
+				
+				
+				this.update = function(){
+					this.draw();
+				}
+				
+			}
+			var circleArray = [];
+			function init(){
+				circleArray =[];
+			
+				for(i=0;i<1;i++){
+					var r = 20,
+						dr = 0.5;
+						circleArray.push(new Circle(mouse.x,mouse.y,r,dr));
+				}
+			}
+			// verry impotant!!
+			init();
+			
+			
+			function animate(){
+				requestAnimationFrame(animate);
+				c.clearRect(0,0,innerWidth,innerHeight * 2);
+				for(i=0;i<circleArray.length;i++){
+					circleArray[i].update();
+				}
+			}
+			animate();
+			//my menu or navigation bar or whathever
+			var ogah = document.getElementById('ogah'),
+				topman = document.getElementById('top'),
+				nash = document.getElementById('bottom'),
+				middle = document.getElementById('center'),
+				author = middle.style.backgroundColor,
+				come = document.getElementById('come'),
+				box1 = document.getElementById('box1'),
+				wrapper = document.getElementById('wrapper');
+			function openNav(){
+					topman.style.animation = 'times 0.3s ease 1 forwards';
+					nash.style.animation = 'times1 0.3s ease 1 forwards';
+					center.style.backgroundColor = 'transparent';
+					ogah.style.zIndex = '98';
+					come.style.zIndex = '99';
+				if(window.innerWidth <= '991'){
+					box1.style.display = 'flex';
+				}
+				else if(window.innerWidth >= '992'){
+					wrapper.style.gridTemplateColumns = '1fr 4fr 1fr';
+					box1.style.display = 'flex';
+				}
+			}
+			
+			function closeNav(){
+				topman.style.animation = 'rev 0.3s ease 1 forwards';
+				nash.style.animation = 'rev1 0.3s ease 1 forwards';
+				center.style.backgroundColor = '#eac117';
+				ogah.style.zIndex = '99';
+				come.style.zIndex = '98';
+				if(window.innerWidth <= '991'){
+					box1.style.display = 'none';
+				}
+				else if(window.innerWidth >= '992'){
+					wrapper.style.gridTemplateColumns = '0fr 5fr 1fr';
+					box1.style.display = 'none';
+				}
+				/*else{
+					box1.style.display = 'grid';
+				}*/
+			}
+			var downloading = document.getElementById('loading');
+			function download(){
+				downloading.style.animation = 'download 1s ease infinite';
+				downloading.style.backgroundColor = 'violet';
+			}
+			var range = document.getElementById('range');
+			var song = document.getElementById('songs');
+			var bigImg = document.getElementById('bigimg');
+			var playbtn = document.getElementById('playbtn');
+			var forYou = document.getElementById('forYou');
+			var topStroke = document.getElementById('playPause');
+			var bottomStroke = document.getElementById('btn');
+			var middleStroke = document.getElementById('play');
+			var tip = document.getElementById('tooltip');
+			function bustBrain(){
+				if(song.paused){
+					song.play();
+					middleStroke.style.backgroundColor = 'transparent';
+					topStroke.style.animation = 'play1 1s ease 1 forwards';
+					bottomStroke.style.animation = 'play2 1s ease 1 forwards';
+					tip.innerHTML = 'Pause';
+				}
+				else{
+					song.pause();
+					middleStroke.style.backgroundColor = '#eac117';
+					topStroke.style.animation = 'play1 1s ease 1 reverse forwards';
+					bottomStroke.style.animation = 'play2 1s ease 1 reverse forwards';
+					tip.innerHTML = 'Play';
+				}
+			}
+			song.addEventListener('timeupdate', function(){
+				var position = song.currentTime / song.duration;
+				range.value = position * 100;
+				var slay = document.getElementById('rangeValue');
+				slay.innerHTML = Math.floor(song.currentTime) + 'sec';
+				document.getElementById('rangeEndValue').innerHTML = Math.ceil(song.duration / 60)+'min';
+			})
+			function playForYou(){
+				song.src = 'Kizz-Daniel-ft-Wizkid-For-You.mp3';
+				bigImg.src = 'Kizz-Daniel-For-You.webp';
+				middleStroke.style.backgroundColor = '#eac117';
+				topStroke.style.animation = 'play1 1s ease 1 reverse forwards';
+				bottomStroke.style.animation = 'play2 1s ease 1 reverse forwards';
+				song.load();
+			}
+			function playErigga(){
+				song.src = 'Erigga-ft.-Brenny-Jones-–-Situation-Room.mp3';
+				bigImg.src = 'face.jpg';
+				middleStroke.style.backgroundColor = '#eac117';
+				topStroke.style.animation = 'play1 1s ease 1 reverse forwards';
+				bottomStroke.style.animation = 'play2 1s ease 1 reverse forwards';
+				song.load();
+			}
+			function playMadu(){
+				song.src = 'Kizz-Daniel-Madu-Official-Audio.mp3';
+				bigImg.src = 'wizkid.jpg';
+				middleStroke.style.backgroundColor = '#eac117';
+				topStroke.style.animation = 'play1 1s ease 1 reverse forwards';
+				bottomStroke.style.animation = 'play2 1s ease 1 reverse forwards';
+				song.load();
+			}
+			function nara(){
+				song.src = 'Tim_Godfrey_ft_Travis_Greene_-_Nara_Jigalert.com_.mp3';
+				bigImg.src = 'travies.jpg';
+				middleStroke.style.backgroundColor = '#eac117';
+				topStroke.style.animation = 'play1 1s ease 1 reverse forwards';
+				bottomStroke.style.animation = 'play2 1s ease 1 reverse forwards';
+				song.load();
+			}
+			function owotime(){
+				song.src = 'OPTIMIST-AWONTEMI-my-people.mp3';
+				bigImg.src = 'louis.jpg';
+				middleStroke.style.backgroundColor = '#eac117';
+				topStroke.style.animation = 'play1 1s ease 1 reverse forwards';
+				bottomStroke.style.animation = 'play2 1s ease 1 reverse forwards';
+				song.load();
+			}
+			
+		</script>
+	</body>
+</html>
